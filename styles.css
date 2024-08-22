@@ -97,6 +97,7 @@ svg {
 
 nav {
 	top: 0;
+	z-index: 50;
 	position: sticky;
 	padding: 1.5rem 0;
 	min-height: 100dvh;
@@ -128,6 +129,10 @@ nav {
 	gap: 0.5rem;
 	display: flex;
 	align-items: center;
+}
+
+.name__display button {
+	pointer-events: none;
 }
 
 .user h1 {
@@ -302,6 +307,14 @@ main {
 	align-items: center;
 }
 
+.breadcrumb button {
+	display: none;
+	padding: 0.2rem;
+	border-radius: 4px;
+	margin-right: 0.5rem;
+	border: 1px solid var(--border);
+}
+
 .main__content {
 	padding: 1rem 0;
 }
@@ -437,9 +450,9 @@ main {
 }
 
 .todo__item[data-state="open"] input {
-  outline-offset: -2px;
+	outline-offset: -2px;
 	accent-color: rgb(var(--white));
-  outline: 2px solid rgb(var(--white));
+	outline: 2px solid rgb(var(--white));
 }
 
 .item__info {
@@ -498,6 +511,7 @@ main {
 
 aside {
 	width: min(100%, 23rem);
+  background-color: rgb(var(--white));
 	border-left: 1px solid var(--border);
 }
 
@@ -516,6 +530,11 @@ aside {
 	font-weight: 600;
 	font-size: large;
 	color: rgb(var(--secondary));
+}
+
+.description__header button {
+  display: none;
+  padding: 0.2rem;
 }
 
 .description__wrapper {
@@ -552,59 +571,99 @@ aside {
 }
 
 .description__features {
-  gap: 1rem;
-  display: flex;
-  flex-direction: column;
+	gap: 1rem;
+	display: flex;
+	flex-direction: column;
 }
 
 .feature {
-  gap: 0.5rem;
-  display: flex;
-  font-size: small;
-  align-items: center;
+	gap: 0.5rem;
+	display: flex;
+	font-size: small;
+	align-items: center;
 }
 
 .feature span {
-  min-width: 5rem;
-  color: rgb(var(--dark-gray));
+	min-width: 5rem;
+	color: rgb(var(--dark-gray));
 }
 
 .feature p {
-  font-weight: 500;
-  color: rgb(var(--secondary));
+	font-weight: 500;
+	color: rgb(var(--secondary));
 }
 
 .sub__list__title {
-  gap: 0.5rem;
-  display: flex;
-  align-items: center;
+	gap: 0.5rem;
+	display: flex;
+	align-items: center;
 }
 
 .sub__list__title h3 {
-  font-weight: 600;
-  font-size: medium;
-  color: rgb(var(--secondary));
+	font-weight: 600;
+	font-size: medium;
+	color: rgb(var(--secondary));
 }
 
 .sub__list {
-  gap: 0.5rem;
-  display: flex;
-  list-style: none;
-  margin-top: 0.5rem;
-  flex-direction: column;
+	gap: 0.5rem;
+	display: flex;
+	list-style: none;
+	margin-top: 0.5rem;
+	flex-direction: column;
 }
 
 .sub__list__item {
-  padding: 0.5rem;
-  font-size: small;
-  border-radius: 6px;
-  color: rgb(var(--secondary));
-  border: 1px solid var(--border);
+	padding: 0.5rem;
+	font-size: small;
+	border-radius: 6px;
+	color: rgb(var(--secondary));
+	border: 1px solid var(--border);
 }
 
 .sub__list__item[data-state="done"] {
-  border: none;
-  font-weight: 500;
-  color: rgb(var(--white));
-  background-color: rgb(var(--primary));
+	border: none;
+	font-weight: 500;
+	color: rgb(var(--white));
+	background-color: rgb(var(--primary));
+}
+
+@media screen and (max-width: 880px) {
+	nav {
+		left: 0;
+		position: absolute;
+		transition: all 500ms ease;
+		transform: translateX(-100%);
+	}
+
+	nav[data-state="open"] {
+		transform: translateX(0);
+	}
+
+	.name__display button {
+		pointer-events: all;
+	}
+
+	.breadcrumb button {
+		display: flex;
+	}
+}
+
+@media screen and (max-width: 880px) {
+	aside[data-state="open"] {
+		transform: translateX(0);
+	}
+
+	aside {
+		top: 0;
+		right: 0;
+    z-index: 50;
+		position: absolute;
+		transition: all 500ms ease;
+		transform: translateX(100%);
+	}
+
+  .description__header button {
+    display: flex;
+  }
 }
